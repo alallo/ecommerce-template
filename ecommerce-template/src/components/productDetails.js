@@ -1,11 +1,27 @@
-import Navbar from "./navbar";
-import ProductList from "./productList";
+import basketStoreService from '../services/basketStoreService'
+import React, { useEffect, useState } from "react";
 
-function ProductDetails(props) {
+function ProductDetails(props)
+ {
     const product = props.location.data
+    const [basketState, setBasketState] = useState(basketStoreService.initialState);
+
+    useEffect(()=> {
+        basketStoreService.subscribe(setBasketState);
+        basketStoreService.init();
+    },[]);
+
+    const onAddItemClick = e => {
+        e.preventDefault();
+        const messageObject = {
+          product: product,
+        };
+        basketStoreService.addItemToBasket(messageObject);
+        alert("Item added to the basket!");
+      };
+
     return (
       <div>
-          <Navbar/>
           <div class="container mx-auto px-6">
             <div class="md:flex md:items-center">
                 <div class="w-full h-full md:w-1/2 lg:h-96">
@@ -36,7 +52,7 @@ function ProductDetails(props) {
                         </div>
                     </div>
                     <div class="flex items-center mt-6">
-                        <button class="px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">Add To Basket</button>
+                        <button class="px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500" onClick={onAddItemClick}>Add To Basket</button>
                         <button class="mx-2 text-gray-600 border rounded-md p-2 hover:bg-gray-200 focus:outline-none">
                             <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                         </button>
@@ -48,7 +64,4 @@ function ProductDetails(props) {
     );
   }
   
-
-
   export default ProductDetails;
-  

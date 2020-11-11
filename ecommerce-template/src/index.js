@@ -8,12 +8,9 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
 import ProductDetails from './components/productDetails';
 
 ReactDOM.render(
-  <HashRouter>
-        <Switch>
-            <Route exact path="/" component={App} />
-            <Route path="/product-details" component={ProductDetails} />
-        </Switch>
-    </HashRouter>,
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
   document.getElementById('root')
 );
 
