@@ -4,12 +4,22 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './tailwind.output.css';
-import { HashRouter, Route, Switch } from 'react-router-dom';
-import ProductDetails from './components/productDetails';
+import { transitions, positions, Provider as AlertProvider  } from 'react-alert'
+import AlertMUITemplate from "react-alert-template-mui";
+
+
+const options = {
+  // you can also just use 'bottom center'
+  position: positions.TOP_CENTER,
+  timeout: 4000,
+  transition: transitions.FADE
+}
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <AlertProvider template={AlertMUITemplate} {...options}>
+     <App />
+  </AlertProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,6 +1,6 @@
-import carouselImg1 from '../img/carousel1.jpg';
-import carouselImg2 from '../img/carousel2.jpg';
-import carouselImg3 from '../img/carousel3.jpg';
+import carouselImg1 from '../../img/carousel1.jpg';
+import carouselImg2 from '../../img/carousel2.jpg';
+import carouselImg3 from '../../img/carousel3.jpg';
 
 function Carousel() {
     return (

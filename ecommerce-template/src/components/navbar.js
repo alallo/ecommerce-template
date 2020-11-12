@@ -5,12 +5,12 @@ import {
     Link
   } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import Carousel from './carousel';
-import ProductList from './productList';
-import Delivery from './delivery';
+import Carousel from './shop/carousel';
+import ProductList from './shop/productList';
+import Delivery from './shop/delivery';
 import About from "./about";
-import ProductDetails from "./productDetails";
-import Checkout from "./checkout";
+import ProductDetails from "./shop/productDetails";
+import Checkout from "./checkout/checkout";
 import basketStoreService from '../services/basketStoreService'
 
 function Navbar() {
