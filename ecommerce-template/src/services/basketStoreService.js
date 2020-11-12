@@ -11,7 +11,7 @@ let state = initialState;
 
 let storedBasket = window.localStorage.getItem('basket');
 let basket = JSON.parse(storedBasket);
-if (Array.isArray(basket.data) && basket.data.length > 0) {
+if (basket && Array.isArray(basket.data) && basket.data.length > 0) {
   state = basket;
 }
 

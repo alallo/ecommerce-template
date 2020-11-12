@@ -4,7 +4,7 @@ import carouselImg3 from '../../img/carousel3.jpg';
 
 function Carousel() {
     return (
-        <div className="carousel relative container mx-auto" style={{maxWidth:1600 }}>
+        <div className="carousel relative shadow-2xl bg-white">
             <div className="carousel-inner relative overflow-hidden w-full">
 
                 <input className="carousel-open invisible" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden="" checked="checked"/>
