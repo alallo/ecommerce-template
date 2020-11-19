@@ -5,80 +5,99 @@ import CheckoutItem from './checkoutItem';
 function Checkout() {
 
     const [basketState, setBasketState] = useState(basketStoreService.initialState);
+    const [checkoutFormState, setCheckoutFormState] = useState({ name: "", email: "", telephone: "", address: "", deliveryDate: ""});
 
     useEffect(()=> {
         basketStoreService.subscribe(setBasketState);
         basketStoreService.init();
     },[]);
 
-    const onClearBasketButtonClick = e => {
-        e.preventDefault();
+    function onClearBasketButtonClick (event) {
+        event.preventDefault();
         basketStoreService.clearBasket();
     };
 
+    function handleInputChange(event) {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+    
+        setCheckoutFormState(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+      }
+    
+    function completeOrderButtonClick(event)
+    {
+        event.preventDefault();
+        console.log(checkoutFormState);
+    }
+
     return (
-        <div class="container mx-auto px-6">
-            <h3 class="text-gray-700 text-2xl font-medium">Checkout</h3>
-            <div class="flex flex-col lg:flex-row mt-8">
-                <div class="w-full lg:w-full order-2">
-                    <form class="mt-8 lg:w-full">
+        <div className="container mx-auto px-6">
+            <h3 className="text-gray-700 text-2xl font-medium">Checkout</h3>
+            <div className="flex flex-col lg:flex-row mt-8">
+                <div className="w-full lg:w-full order-2">
+                    <form className="mt-8 lg:w-full">
                         <div>
-                            <div class="w-full mb-8 flex-shrink-0 order-1 lg:w-1/2 lg:mb-0 lg:order-2">
-                                <div class="w-full flex">
-                                    <div class="border rounded-md max-w-md w-full px-4 py-3">
-                                        <div class="flex items-center justify-between">
-                                            <h3 class="text-gray-700 font-medium">Order total ({basketState.basketItemCount})</h3>
+                            <div className="w-full mb-8 flex-shrink-0 order-1 lg:w-1/2 lg:mb-0 lg:order-2">
+                                <div className="w-full flex">
+                                    <div className="border rounded-md max-w-md w-full px-4 py-3">
+                                        <div className="flex items-center justify-between">
+                                            <h3 className="text-gray-700 font-medium">Order total ({basketState.basketItemCount})</h3>
                                         </div>
                                         {basketState.data.map((checkoutItem) =>
                                             <CheckoutItem checkoutItem={checkoutItem} />
                                         )}
+                                        <hr className="my-3"/>
+                                    <div>
+                                    <h3 className="text-gray-700 font-medium">Subtotal(excluding delivery): <b>£{basketState.basketTotalAmount}</b></h3>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="w-1/2">
-                            <div class="mt-8">
-                                <h4 class="text-sm text-gray-500 font-medium">Your Details</h4>
-                                <div class="mt-6 flex">
-                                    <label class="block flex-1 ml-3">
-                                        <input type="text" class="form-input mt-1 block w-full text-gray-700" placeholder="First Name"/>
-                                    </label>
-                                    <label class="block flex-1 ml-3">
-                                        <input type="text" class="form-input mt-1 block w-full text-gray-700" placeholder="Last Name"/>
+                        <div className="w-1/2">
+                            <div className="mt-8">
+                                <h4 className="text-sm text-gray-500 font-medium">Your Details</h4>
+                                <div className="mt-6 flex">
+                                    <label className="block flex-1 ml-3">
+                                        <input type="text" className="form-input mt-1 block w-full text-gray-700" name="name" placeholder="Name" value={checkoutFormState.name} onChange={handleInputChange}/>
                                     </label>
                                 </div>
-                                <div class="mt-6 flex">
-                                    <label class="block flex-1 ml-3">
-                                        <input type="text" class="form-input mt-1 block w-full text-gray-700" placeholder="Email address"/>
+                                <div className="mt-6 flex">
+                                    <label className="block flex-1 ml-3">
+                                        <input type="text" className="form-input mt-1 block w-full text-gray-700" name="email" placeholder="Email address" value={checkoutFormState.email} onChange={handleInputChange}/>
                                     </label>
                                 </div>
-                                <div class="mt-6 flex mb-10">
-                                    <label class="block flex-1 ml-3">
-                                        <input type="text" class="form-input mt-1 block w-full text-gray-700" placeholder="Telephone"/>
+                                <div className="mt-6 flex mb-10">
+                                    <label className="block flex-1 ml-3">
+                                        <input type="text" className="form-input mt-1 block w-full text-gray-700" name="telephone" placeholder="Telephone" value={checkoutFormState.telephone} onChange={handleInputChange}/>
                                     </label>
                                 </div>
-                                <h4 class="text-sm text-gray-500 font-medium">Delivery address</h4>
-                                <div class="mt-6 flex">
-                                    <label class="block flex-1 ml-3">
-                                        <textarea type="text" class="form-input mt-1 block w-full text-gray-700" placeholder="Address"/>
+                                <h4 className="text-sm text-gray-500 font-medium">Delivery address</h4>
+                                <div className="mt-6 flex">
+                                    <label className="block flex-1 ml-3">
+                                        <textarea type="text" className="form-input mt-1 block w-full text-gray-700" name="address" placeholder="Address" value={checkoutFormState.address} onChange={handleInputChange}/>
                                     </label>
                                 </div>
                             </div>
-                            <div class="mt-8">
-                                <h4 class="text-sm text-gray-500 font-medium">Ideal Delivery Date</h4>
-                                <div class="mt-6 flex">
-                                    <label class="block flex-1">
-                                        <input type="date" class="form-input mt-1 block w-full text-gray-700" placeholder="Date"/>
+                            <div className="mt-8">
+                                <h4 className="text-sm text-gray-500 font-medium">Ideal Delivery Date</h4>
+                                <div className="mt-6 flex">
+                                    <label className="block flex-1">
+                                        <input type="date" className="form-input mt-1 block w-full text-gray-700" name="deliveryDate" placeholder="Date" value={checkoutFormState.deliveryDate} onChange={handleInputChange}/>
                                     </label>
                                 </div>
                             </div>
                         </div>
     
-                        <div class="flex items-center justify-between mt-8 mb-10">
-                            <button class="flex items-center px-3 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
+                        <div className="flex items-center justify-between mt-8 mb-10">
+                            <button className="flex items-center px-3 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-500 focus:outline-none focus:bg-blue-500" onClick={completeOrderButtonClick}>
                                 <span>Complete order</span>
                             </button>
-                            <button class="flex items-center px-3 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-500 focus:outline-none focus:bg-blue-500" onClick={onClearBasketButtonClick}>
+                            <button className="flex items-center px-3 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-500 focus:outline-none focus:bg-blue-500" onClick={onClearBasketButtonClick}>
                                 <span>Clear Basket</span>
                             </button>
                         </div>

@@ -3,13 +3,35 @@ import { useEffect, useState } from "react";
 import { useAlert } from 'react-alert'
 import MainImage from './ImageGallery/mainImage';
 import ThumbnailImages from './ImageGallery/thumbnailImages';
+import productService from "../../services/productService";
 
 function ProductDetails(props)
  {
     const alert = useAlert();
-    const product = props.location.data
+    let productId = props.location.productId
+    if(!productId)
+    {
+        let pathName = props.location.pathname;
+        let pathNameArray = pathName.split('/')
+        let productIdFromPathName = pathNameArray[pathNameArray.length -1];
+        if(isNaN(productIdFromPathName))
+            redirectToHome();
+        else
+            productId = productIdFromPathName;
+
+    }
     const [basketState, setBasketState] = useState(basketStoreService.initialState);
+    const [productListState, setProductListState] = useState(productService.initialState);
+    const productsFound = productListState.filter(item => item.id === productId);
+    if(productsFound.length === 0)
+        redirectToHome();
+    const product = productsFound[0];
+
     const [quantity, setQuantity] = useState(1);
+
+    const [featuredImage, setFeaturedImage] = useState({
+        image: product.images[0],
+    });
 
     useEffect(()=> {
         //scroll at the top
@@ -18,6 +40,10 @@ function ProductDetails(props)
 
         basketStoreService.subscribe(setBasketState);
         basketStoreService.init();
+
+        productService.subscribe(setProductListState);
+        productService.init();
+
     },[]);
 
     const onAddItemClick = e => {
@@ -30,15 +56,13 @@ function ProductDetails(props)
         alert.success("The item is now in your basket");
       };
 
-    
-      const [featuredImage, setFeaturedImage] = useState({
-        image: product.images[0],
-    }
-)
-
     const [active, setActive] = useState({
             active: 0
-    })
+    });
+
+    function redirectToHome() {
+        window.location.href = '/';
+    }
 
     function clickHandler(index) {
         setFeaturedImage({ image: product.images[index] })
@@ -49,7 +73,7 @@ function ProductDetails(props)
         <div>
             <div class="container mx-auto px-6 mt-20 mb-20">
                     <div class="md:flex md:items-center">
-                        <div className="relative w-1/2">
+                        <div className="relative xl:w-1/2 sm:w-full">
                             <MainImage image={ featuredImage.image }/>
                             <ThumbnailImages images={ product.images } click={ clickHandler }  activeThumb={ active.active }/>
                         </div>

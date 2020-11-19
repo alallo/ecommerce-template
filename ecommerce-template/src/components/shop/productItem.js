@@ -7,8 +7,8 @@ function ProductItem(props) {
         <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
         <Link to=""
         to={{
-            pathname: "/product-details",
-            data: product
+            pathname: "/product-details/" + product.id,
+            productId: product.id
           }}>
             <img class="hover:grow hover:shadow-lg productImg" src={product.image}/>
             <div class="pt-3 flex items-center justify-between">

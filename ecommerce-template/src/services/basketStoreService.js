@@ -5,6 +5,7 @@ const subject = new Subject();
 const initialState = {
   data: [],
   basketItemCount: 0,
+  basketTotalAmount: 0
 }; 
 
 let state = initialState;
@@ -22,7 +23,8 @@ const basketStoreService = {
         state = {
           ...state,
           data: [...state.data, item],
-          basketItemCount: state.basketItemCount + 1
+          basketItemCount: state.basketItemCount + 1,
+          basketTotalAmount: state.basketTotalAmount + (item.product.price * item.quantity)
          };
          window.localStorage.setItem('basket', JSON.stringify(state));
          subject.next(state);
