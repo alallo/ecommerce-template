@@ -5,6 +5,7 @@
         "description": "This is the item description. Please add something useful here for the customer to the describe the item.",
         "image": "https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-9/123185673_10164805014340157_79704518487937508_n.jpg?_nc_cat=106&ccb=2&_nc_sid=b9115d&_nc_ohc=MZdquPC36NIAX8-gA_m&_nc_oc=AQlIv9iMGqkDjXFJs5WFp8H2H3w72WhkNYtXbAWHoWMCXgLfptlFCwpDjMCFp3bROU8&_nc_ht=scontent-lht6-1.xx&oh=b797306782872b4a6233ef619da2af2e&oe=5FD3EBF0",
         "price": "10.00",
+        "isFeatured": true,
         "images": 
         [
             "https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-9/123185673_10164805014340157_79704518487937508_n.jpg?_nc_cat=106&ccb=2&_nc_sid=b9115d&_nc_ohc=MZdquPC36NIAX8-gA_m&_nc_oc=AQlIv9iMGqkDjXFJs5WFp8H2H3w72WhkNYtXbAWHoWMCXgLfptlFCwpDjMCFp3bROU8&_nc_ht=scontent-lht6-1.xx&oh=b797306782872b4a6233ef619da2af2e&oe=5FD3EBF0",
@@ -18,6 +19,7 @@
         "description": "This is the item description. Please add something useful here for the customer to the describe the item.",
         "image": "https://scontent-lhr8-1.xx.fbcdn.net/v/t1.0-9/122846511_10164792504605157_5612489398283649497_n.jpg?_nc_cat=109&ccb=2&_nc_sid=b9115d&_nc_ohc=wkUIkktL3osAX9-nkwA&_nc_ht=scontent-lhr8-1.xx&oh=3d5987d85c84ac3cb209f57cb183d63f&oe=5FD2084B",
         "price": "10.00",
+        "isFeatured": true,
         "images": 
         [
             "https://scontent-lhr8-1.xx.fbcdn.net/v/t1.0-9/122846511_10164792504605157_5612489398283649497_n.jpg?_nc_cat=109&ccb=2&_nc_sid=b9115d&_nc_ohc=wkUIkktL3osAX9-nkwA&_nc_ht=scontent-lhr8-1.xx&oh=3d5987d85c84ac3cb209f57cb183d63f&oe=5FD2084B",
@@ -31,6 +33,7 @@
         "description": "This is the item description. Please add something useful here for the customer to the describe the item.",
         "image": "https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-9/87975533_10163538175555157_4466645410928132096_n.jpg?_nc_cat=105&ccb=2&_nc_sid=b9115d&_nc_ohc=miGBtu5LIyQAX-hbcZO&_nc_ht=scontent-lht6-1.xx&oh=25428aae2958ff652d1f4bba90691841&oe=5FD3529B",
         "price": "10.00",
+        "isFeatured": true,
         "images": 
         [
             "https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-9/123185673_10164805014340157_79704518487937508_n.jpg?_nc_cat=106&ccb=2&_nc_sid=b9115d&_nc_ohc=MZdquPC36NIAX8-gA_m&_nc_oc=AQlIv9iMGqkDjXFJs5WFp8H2H3w72WhkNYtXbAWHoWMCXgLfptlFCwpDjMCFp3bROU8&_nc_ht=scontent-lht6-1.xx&oh=b797306782872b4a6233ef619da2af2e&oe=5FD3EBF0",
@@ -44,6 +47,7 @@
         "description": "This is the item description. Please add something useful here for the customer to the describe the item.",
         "image": "https://scontent-lhr8-1.xx.fbcdn.net/v/t1.0-9/87246653_10163501396355157_8286083475627311104_n.jpg?_nc_cat=102&ccb=2&_nc_sid=b9115d&_nc_ohc=fW67aGIoCsgAX9mYZoW&_nc_oc=AQkCwqZMGxzzEqgsdj7CPAAvD_aPUTVZXD__xDXp8fejSWG_pYi8pIZma_kbpKNePqI&_nc_ht=scontent-lhr8-1.xx&oh=f7dcf2a1cb77253dd83dcc8d6e3c9210&oe=5FD35B64",
         "price": "10.00",
+        "isFeatured": false,
         "images": 
         [
             "https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-9/123185673_10164805014340157_79704518487937508_n.jpg?_nc_cat=106&ccb=2&_nc_sid=b9115d&_nc_ohc=MZdquPC36NIAX8-gA_m&_nc_oc=AQlIv9iMGqkDjXFJs5WFp8H2H3w72WhkNYtXbAWHoWMCXgLfptlFCwpDjMCFp3bROU8&_nc_ht=scontent-lht6-1.xx&oh=b797306782872b4a6233ef619da2af2e&oe=5FD3EBF0",
@@ -57,6 +61,7 @@
         "description": "This is the item description. Please add something useful here for the customer to the describe the item.",
         "image": "https://scontent-lhr8-1.xx.fbcdn.net/v/t1.0-9/80974904_10163205818775157_8450107396193255424_n.jpg?_nc_cat=109&ccb=2&_nc_sid=b9115d&_nc_ohc=2V0SnOQBlAoAX8eoUqB&_nc_ht=scontent-lhr8-1.xx&oh=23547cd5860baa4527beb10f3e8b97ff&oe=5FD2E978",
         "price": "10.00",
+        "isFeatured": false,
         "images": 
         [
             "https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-9/123185673_10164805014340157_79704518487937508_n.jpg?_nc_cat=106&ccb=2&_nc_sid=b9115d&_nc_ohc=MZdquPC36NIAX8-gA_m&_nc_oc=AQlIv9iMGqkDjXFJs5WFp8H2H3w72WhkNYtXbAWHoWMCXgLfptlFCwpDjMCFp3bROU8&_nc_ht=scontent-lht6-1.xx&oh=b797306782872b4a6233ef619da2af2e&oe=5FD3EBF0",
@@ -70,6 +75,7 @@
         "description": "This is the item description. Please add something useful here for the customer to the describe the item.",
         "image": "https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-9/77387112_10163077009320157_3106456296514125824_n.jpg?_nc_cat=108&ccb=2&_nc_sid=b9115d&_nc_ohc=H16WqJ_gq9oAX_QGs8_&_nc_ht=scontent-lht6-1.xx&oh=8c300e4bb2eadfc84c853fb60ab8f13f&oe=5FD332AF",
         "price": "10.00",
+        "isFeatured": false,
         "images": 
         [
             "https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-9/123185673_10164805014340157_79704518487937508_n.jpg?_nc_cat=106&ccb=2&_nc_sid=b9115d&_nc_ohc=MZdquPC36NIAX8-gA_m&_nc_oc=AQlIv9iMGqkDjXFJs5WFp8H2H3w72WhkNYtXbAWHoWMCXgLfptlFCwpDjMCFp3bROU8&_nc_ht=scontent-lht6-1.xx&oh=b797306782872b4a6233ef619da2af2e&oe=5FD3EBF0",
@@ -83,6 +89,7 @@
         "description": "This is the item description. Please add something useful here for the customer to the describe the item.",
         "image": "https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-9/124465993_10164849982195157_3270493526523634648_n.jpg?_nc_cat=103&ccb=2&_nc_sid=b9115d&_nc_ohc=ZRuvMYXjXokAX_6eNrP&_nc_ht=scontent-lht6-1.xx&oh=9edb85a228678deabd78b3cb25b567b6&oe=5FD438D9",
         "price": "10.00",
+        "isFeatured": "false",
         "images": 
         [
             "https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-9/123185673_10164805014340157_79704518487937508_n.jpg?_nc_cat=106&ccb=2&_nc_sid=b9115d&_nc_ohc=MZdquPC36NIAX8-gA_m&_nc_oc=AQlIv9iMGqkDjXFJs5WFp8H2H3w72WhkNYtXbAWHoWMCXgLfptlFCwpDjMCFp3bROU8&_nc_ht=scontent-lht6-1.xx&oh=b797306782872b4a6233ef619da2af2e&oe=5FD3EBF0",
@@ -96,6 +103,7 @@
         "description": "This is the item description. Please add something useful here for the customer to the describe the item.",
         "image": "https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-9/124192219_10164849967830157_1413050695178364177_o.jpg?_nc_cat=105&ccb=2&_nc_sid=825194&_nc_ohc=pkmhUw94FoUAX9ORBum&_nc_ht=scontent-lht6-1.xx&oh=84d66d011b11562efd5264652ff50b01&oe=5FD0DEF1",
         "price": "10.00",
+        "isFeatured": false,
         "images": 
         [
             "https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-9/123185673_10164805014340157_79704518487937508_n.jpg?_nc_cat=106&ccb=2&_nc_sid=b9115d&_nc_ohc=MZdquPC36NIAX8-gA_m&_nc_oc=AQlIv9iMGqkDjXFJs5WFp8H2H3w72WhkNYtXbAWHoWMCXgLfptlFCwpDjMCFp3bROU8&_nc_ht=scontent-lht6-1.xx&oh=b797306782872b4a6233ef619da2af2e&oe=5FD3EBF0",

@@ -5,13 +5,13 @@ import {
     Link
   } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import Carousel from './shop/carousel';
 import ProductList from './shop/productList';
 import Delivery from './shop/delivery';
 import About from "./about";
 import ProductDetails from "./shop/productDetails";
 import Checkout from "./checkout/checkout";
 import basketStoreService from '../services/basketStoreService'
+import FeaturedProduct from "./shop/featuredProduct";
 
 function Navbar() {
 
@@ -67,7 +67,7 @@ function Navbar() {
         </nav>
         <Switch>
             <Route exact path="/">
-                <Carousel/>
+                <FeaturedProduct/>
                 <ProductList/>
                 <Delivery/>
             </Route>
