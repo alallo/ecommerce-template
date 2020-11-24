@@ -31,12 +31,12 @@ function Checkout() {
     function completeOrderButtonClick(event)
     {
         event.preventDefault();
-        console.log(checkoutFormState);
+        var order = { basket: basketState.data, customer: checkoutFormState};
+        console.log(order);
     }
 
     return (
         <div className="container mx-auto px-6">
-            <h3 className="text-gray-700 text-2xl font-medium">Checkout</h3>
             <div className="flex flex-col lg:flex-row mt-8">
                 <div className="w-full lg:w-full order-2">
                     <form className="mt-8 lg:w-full">
@@ -47,8 +47,8 @@ function Checkout() {
                                         <div className="flex items-center justify-between">
                                             <h3 className="text-gray-700 font-medium">Order total ({basketState.basketItemCount})</h3>
                                         </div>
-                                        {basketState.data.map((checkoutItem) =>
-                                            <CheckoutItem checkoutItem={checkoutItem} />
+                                        {basketState.data.map((checkoutItem, index) =>
+                                            <CheckoutItem checkoutItem={checkoutItem} key={index}/>
                                         )}
                                         <hr className="my-3"/>
                                     <div>
@@ -68,12 +68,12 @@ function Checkout() {
                                 </div>
                                 <div className="mt-6 flex">
                                     <label className="block flex-1 ml-3">
-                                        <input type="text" className="form-input mt-1 block w-full text-gray-700" name="email" placeholder="Email address" value={checkoutFormState.email} onChange={handleInputChange}/>
+                                        <input type="email" className="form-input mt-1 block w-full text-gray-700" name="email" placeholder="Email address" value={checkoutFormState.email} onChange={handleInputChange}/>
                                     </label>
                                 </div>
                                 <div className="mt-6 flex mb-10">
                                     <label className="block flex-1 ml-3">
-                                        <input type="text" className="form-input mt-1 block w-full text-gray-700" name="telephone" placeholder="Telephone" value={checkoutFormState.telephone} onChange={handleInputChange}/>
+                                        <input type="tel" className="form-input mt-1 block w-full text-gray-700" name="telephone" placeholder="Telephone" value={checkoutFormState.telephone} onChange={handleInputChange}/>
                                     </label>
                                 </div>
                                 <h4 className="text-sm text-gray-500 font-medium">Delivery address</h4>

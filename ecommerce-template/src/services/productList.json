@@ -19,7 +19,7 @@
         "description": "This is the item description. Please add something useful here for the customer to the describe the item.",
         "image": "https://scontent-lhr8-1.xx.fbcdn.net/v/t1.0-9/122846511_10164792504605157_5612489398283649497_n.jpg?_nc_cat=109&ccb=2&_nc_sid=b9115d&_nc_ohc=wkUIkktL3osAX9-nkwA&_nc_ht=scontent-lhr8-1.xx&oh=3d5987d85c84ac3cb209f57cb183d63f&oe=5FD2084B",
         "price": "10.00",
-        "isFeatured": true,
+        "isFeatured": false,
         "images": 
         [
             "https://scontent-lhr8-1.xx.fbcdn.net/v/t1.0-9/122846511_10164792504605157_5612489398283649497_n.jpg?_nc_cat=109&ccb=2&_nc_sid=b9115d&_nc_ohc=wkUIkktL3osAX9-nkwA&_nc_ht=scontent-lhr8-1.xx&oh=3d5987d85c84ac3cb209f57cb183d63f&oe=5FD2084B",

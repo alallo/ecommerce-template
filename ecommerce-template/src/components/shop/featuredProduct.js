@@ -15,9 +15,10 @@ function FeaturedProduct() {
 
         
         <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12 w-full h-full">
-            <div className="grid gap-6 mb-8 md:grid-cols-3 w-full h-full">
+            <div className="grid gap-6 mb-8 md:grid-cols-2 w-full h-full">
             {featuredProduct.map((product, index) => {       
                 return <Link
+                    key={product.id}
                     to={{
                         pathname: "/product-details/" + product.id,
                         productId: product.id

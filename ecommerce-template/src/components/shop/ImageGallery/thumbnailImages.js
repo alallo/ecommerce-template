@@ -2,10 +2,7 @@ function ThumbnailImages(props) {
     const imageArray = props.images;
 
     let isActive = props.activeThumb;
-
     let className="border-solid rounded-lg py-2 px-4 mr-2 hover:border-gray-700";
-
-    // set default border
     let activeClass = "border-gray-200 border";
 
     function thumbnailSelect(index) {
@@ -22,7 +19,7 @@ function ThumbnailImages(props) {
                                 onClick={ () => props.click(index) } 
                                 className={className + " " + activeClass
                             }>
-                            <img src={image } />
+                            <img src={image} alt={"thumbnail_" + index}/>
                         </button>
                     </li>
                 ))}
