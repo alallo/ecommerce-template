@@ -47,9 +47,11 @@ function Checkout() {
                                         <div className="flex items-center justify-between">
                                             <h3 className="text-gray-700 font-medium">Order total ({basketState.basketItemCount})</h3>
                                         </div>
-                                        {basketState.data.map((checkoutItem, index) =>
-                                            <CheckoutItem checkoutItem={checkoutItem} key={index}/>
-                                        )}
+                                        {basketState.data.length > 0 
+                                            ? basketState.data.map((checkoutItem, index) =>
+                                                <CheckoutItem checkoutItem={checkoutItem} key={index}/>)
+                                            : <div>The basket is empty</div>
+                                        }
                                         <hr className="my-3"/>
                                     <div>
                                     <h3 className="text-gray-700 font-medium">Subtotal(excluding delivery): <b>£{basketState.basketTotalAmount}</b></h3>
