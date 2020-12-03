@@ -1,20 +1,25 @@
+import httpService from './httpService';
 import { Subject } from 'rxjs'
-import productList from './productList.json'
 
 const subject = new Subject();
-
-const initialState = productList;
-
-let state = initialState;
+let state = [];
 
 const productService = {
     init: () => subject.next(state),
     subscribe: setState => subject.subscribe(setState),
-    getProductList: () => {
-        state = productList;
-        state = subject.next(state);
+    async getProductList() {
+        const products = await httpService.getData('/products')
+        state = products;
+        subject.next(state);
+        return products;
     },
-    initialState
+    async getProductById(id) {
+        var product = state.filter(item => item.id === id)[0];
+        if(!product)
+            product = await httpService.getData('/product/' + id)
+        return product;
+    }
 }
+
 
 export default productService;

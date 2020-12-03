@@ -11,15 +11,16 @@ import About from "./about";
 import ProductDetails from "./shop/productDetails";
 import Checkout from "./checkout/checkout";
 import basketStoreService from '../services/basketStoreService'
-import FeaturedProduct from "./shop/featuredProduct";
 
 function Navbar() {
 
     const [basketState, setBasketState] = useState(basketStoreService.initialState);
+ 
     useEffect(() => {
         basketStoreService.subscribe(setBasketState);
         basketStoreService.init();
-      }, [])
+    }, [])
+
     return (
       <Router>
         <nav id="header" className="w-full z-30 top-0 py-1">
@@ -67,7 +68,6 @@ function Navbar() {
         </nav>
         <Switch>
             <Route exact path="/">
-                <FeaturedProduct/>
                 <ProductList/>
                 <Delivery/>
             </Route>

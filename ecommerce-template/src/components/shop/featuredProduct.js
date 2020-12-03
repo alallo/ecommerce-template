@@ -1,22 +1,13 @@
-import productService from "../../services/productService";
-import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 
-function FeaturedProduct() {
-    const [productListState, setProductListState] = useState(productService.initialState);
+function FeaturedProduct(props) {
 
-    useEffect(()=> {
-        productService.subscribe(setProductListState);
-        productService.init();
-    },[]);
-    const featuredProduct = productListState.filter(product => product.isFeatured === true);
-
+    const featuredProduct = props.products ? props.products.filter(product => product.isFeatured === true) : [];
+    
     return (
-
-        
         <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12 w-full h-full">
             <div className="grid gap-6 mb-8 md:grid-cols-2 w-full h-full">
-            {featuredProduct.map((product, index) => {       
+            {featuredProduct && featuredProduct.map((product) => {       
                 return <Link
                     key={product.id}
                     to={{
