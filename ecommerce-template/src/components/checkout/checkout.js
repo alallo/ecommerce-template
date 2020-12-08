@@ -1,11 +1,14 @@
 import basketStoreService from '../../services/basketStoreService'
 import React, { useEffect, useState } from "react";
 import CheckoutItem from './checkoutItem';
+import checkoutService from '../../services/checkoutService';
+import  { useHistory } from 'react-router-dom'
 
 function Checkout() {
 
     const [basketState, setBasketState] = useState(basketStoreService.initialState);
     const [checkoutFormState, setCheckoutFormState] = useState({ name: "", email: "", telephone: "", address: "", deliveryDate: ""});
+    const history = useHistory();
 
     useEffect(()=> {
         basketStoreService.subscribe(setBasketState);
@@ -31,8 +34,10 @@ function Checkout() {
     function completeOrderButtonClick(event)
     {
         event.preventDefault();
-        var order = { basket: basketState.data, customer: checkoutFormState};
-        console.log(order);
+        let order = { basket: basketState.data, customer: checkoutFormState};
+        checkoutService.completeCheckou(order);
+        basketStoreService.clearBasket();
+        return history.push('/') ;
     }
 
     return (

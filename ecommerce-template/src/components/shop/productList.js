@@ -15,7 +15,7 @@ function ProductList() {
         fetchData();
       }, [])
 
-    if(!productList || productList.length == 0 )
+    if(!productList || productList.length === 0 )
       return <div>Loading...</div>
     else
     return (
