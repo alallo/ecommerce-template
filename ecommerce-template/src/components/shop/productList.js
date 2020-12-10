@@ -1,21 +1,33 @@
 import { useEffect, useState } from "react";
 import productService from "../../services/productService";
+import NotFoundError from "../shared/notFoundError";
 import FeaturedProduct from "./featuredProduct";
 import ProductItem from "./productItem";
 import ProductListNav from "./productListNav";
 
 function ProductList() {
     const [productList, setProductList] = useState([]);
+    const [displayError, setDisplayError] = useState(false);
     useEffect(() => {
         async function fetchData() {
-              productService.getProductList().then((response) => {
-              setProductList(response)
-            });
+            productService.getProductList().then((response) => {
+            if(!response)
+            {
+                setDisplayError(true);
+                
+            }
+            setProductList(response)
+          });
         }
         fetchData();
-      }, [])
 
-    if(!productList || productList.length === 0 )
+      },[])
+
+    if(displayError)
+    {
+      return <NotFoundError></NotFoundError>
+    }
+    else if(!productList || productList.length === 0 )
       return <div>Loading...</div>
     else
     return (

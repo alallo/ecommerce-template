@@ -35,7 +35,7 @@ function Checkout() {
     {
         event.preventDefault();
         let order = { basket: basketState.data, customer: checkoutFormState};
-        checkoutService.completeCheckou(order);
+        checkoutService.completeCheckout(order);
         basketStoreService.clearBasket();
         return history.push('/') ;
     }

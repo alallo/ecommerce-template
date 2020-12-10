@@ -4,7 +4,6 @@ const httpService = {
     async postData(url, data){
         const response = await fetch(serverUrl + url, {
             method: 'POST',
-            mode: 'cors',
             cache: 'no-cache',
             credentials: 'same-origin', 
             headers: {
@@ -14,12 +13,11 @@ const httpService = {
             referrerPolicy: 'no-referrer', 
             body: JSON.stringify(data) 
         });
-        return response.json();
+        await returnResponse(response);
     },
     async getData(url) {
         const response = await fetch(serverUrl + url, {
             method: 'GET',
-            mode: 'cors',
             cache: 'no-cache',
             credentials: 'same-origin',
             headers: {
@@ -28,8 +26,25 @@ const httpService = {
             redirect: 'follow',
             referrerPolicy: 'no-referrer'
         });
-        return response.json(); // parses JSON response into native JavaScript objects
+        return await returnResponse(response);
+    }
+}
+
+async function returnResponse(response) {
+    if (response.status >= 200 && response.status <= 299) {
+        let jsonResponse = {};
+        try
+        {
+            jsonResponse = await response.json();
+        }
+        finally{
+            return jsonResponse;
+        }
+        
+    } else {
+        throw Error(response.statusText);
     }
 }
 
 export default httpService;
+

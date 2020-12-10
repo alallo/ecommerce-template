@@ -40,7 +40,7 @@ function ProductDetails(props)
             setSelectedProduct(productsFound);
             setFeaturedImage({ image: productsFound.images[0], altText: productsFound.name })
         });
-    },[]);
+    },[productId]);
 
     const onAddItemClick = e => {
         e.preventDefault();

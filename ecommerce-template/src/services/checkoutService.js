@@ -1,7 +1,7 @@
 import httpService from './httpService';
 
 const checkoutService = {
-    async completeCheckou(data){
+    async completeCheckout(data){
         const response = await httpService.postData('/completeOrder', data);
         return response;
     }
