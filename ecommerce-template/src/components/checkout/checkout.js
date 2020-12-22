@@ -15,7 +15,7 @@ function Checkout() {
     useEffect(()=> {
         basketStoreService.subscribe(setBasketState);
         basketStoreService.init();
-    },[]);
+    },[basketState.data]);
 
     function onClearBasketButtonClick (event) {
         event.preventDefault();

@@ -6,7 +6,7 @@ function CheckoutItem(props) {
     const [checkoutItem, setCheckoutItem] = useState(props.checkoutItem);
     useEffect(() => {
         setCheckoutItem(props.checkoutItem)
-      }, [checkoutItem.quantity])
+    },[props.checkoutItem.quantity])
 
     function onRemoveItemButtonClick(itemId, event) {
         event.preventDefault();
@@ -20,7 +20,7 @@ function CheckoutItem(props) {
 
     function onDecreaseQuantityButtonClick(itemId, event) {
         event.preventDefault();
-        basketStoreService.decreaseQuantity(itemId, 1);
+        basketStoreService.decreaseQuantity(itemId, -1);
     };
 
     return (

@@ -19,7 +19,7 @@ function Navbar() {
     useEffect(() => {
         basketStoreService.subscribe(setBasketState);
         basketStoreService.init();
-    }, [])
+    }, [basketState.basketItemCount])
 
     return (
       <Router>
