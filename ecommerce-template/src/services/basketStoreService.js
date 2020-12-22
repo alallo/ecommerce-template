@@ -26,24 +26,44 @@ const basketStoreService = {
           basketItemCount: state.basketItemCount + 1,
           basketTotalAmount: state.basketTotalAmount + (item.product.price * item.quantity)
          };
-         window.localStorage.setItem('basket', JSON.stringify(state));
-         subject.next(state);
+         saveToLocalStorageAndEmit()
       },
     removeItemFromBasket: id => {
         state = {
           ...state,
           data: state.data.filter(item => item.product.id !== id),
           basketItemCount: state.basketItemCount - 1
-         };
-         window.localStorage.setItem('basket', JSON.stringify(state));
-         subject.next(state);
+        };
+        updateBasketTotalAmount();
+        saveToLocalStorageAndEmit();
       },
+    increaseQuantity: (id, quantity) =>{
+      let updateItem = state.data.find(item => item.product.id === id);
+      let index = state.data.indexOf(updateItem);
+      updateItem.quantity += quantity;
+      state.data[index] = updateItem;
+      updateBasketTotalAmount();
+      saveToLocalStorageAndEmit()
+    },
+    decreaseQuantity: (id, quantity) =>{
+      this.increaseQuantity(id, quantity);
+    },
     clearBasket: () => {
         state = initialState;
-        window.localStorage.setItem('basket', JSON.stringify(state));
-        subject.next(state);
+        saveToLocalStorageAndEmit()
     },
     initialState
 }
 
 export default basketStoreService;
+
+function updateBasketTotalAmount() {
+  state.basketTotalAmount = state.data.reduce(function (total, item) {
+    return total + (item.product.price * item.quantity);
+  }, 0);
+}
+
+function saveToLocalStorageAndEmit() {
+  window.localStorage.setItem('basket', JSON.stringify(state));
+  subject.next(state);
+}

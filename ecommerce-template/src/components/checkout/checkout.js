@@ -3,12 +3,14 @@ import React, { useEffect, useState } from "react";
 import CheckoutItem from './checkoutItem';
 import checkoutService from '../../services/checkoutService';
 import  { useHistory } from 'react-router-dom'
+import { useAlert } from 'react-alert'
 
 function Checkout() {
 
     const [basketState, setBasketState] = useState(basketStoreService.initialState);
     const [checkoutFormState, setCheckoutFormState] = useState({ name: "", email: "", telephone: "", address: "", deliveryDate: ""});
     const history = useHistory();
+    const alert = useAlert();
 
     useEffect(()=> {
         basketStoreService.subscribe(setBasketState);
@@ -37,6 +39,7 @@ function Checkout() {
         let order = { basket: basketState.data, customer: checkoutFormState};
         checkoutService.completeCheckout(order);
         basketStoreService.clearBasket();
+        alert.success("Your order is now with us. We will get in touch soon. Thank you!");
         return history.push('/') ;
     }
 
@@ -54,7 +57,7 @@ function Checkout() {
                                         </div>
                                         {basketState.data.length > 0 
                                             ? basketState.data.map((checkoutItem, index) =>
-                                                <CheckoutItem checkoutItem={checkoutItem} key={index}/>)
+                                            <CheckoutItem checkoutItem={checkoutItem} key={index}/>)
                                             : <div>The basket is empty</div>
                                         }
                                         <hr className="my-3"/>

@@ -2,8 +2,20 @@ import httpService from './httpService';
 
 const checkoutService = {
     async completeCheckout(data){
-        const response = await httpService.postData('/completeOrder', data);
-        return response;
+        let response;
+        try
+        {
+             response = await httpService.postData('/completeOrder', data);
+        }
+        catch(error)
+        {
+            console.error("Can't get the list of products: " + error);
+        }
+        finally
+        {
+            return response;
+        }
+        
     }
 }
 

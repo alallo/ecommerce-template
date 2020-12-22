@@ -21,8 +21,8 @@ function ProductDetails(props)
 
     }
     const [selectedProduct, setSelectedProduct] = useState(undefined);
-    const [, setBasketState] = useState(basketStoreService.initialState);
     const [quantity, setQuantity] = useState(1);
+    const [, setBasketState] = useState(basketStoreService.initialState);
  
     const [featuredImage, setFeaturedImage] = useState({});
     
@@ -30,10 +30,9 @@ function ProductDetails(props)
         //scroll at the top
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
+    },[]);
 
-        basketStoreService.subscribe(setBasketState);
-        basketStoreService.init();
-
+    useEffect(()=> {
         productService.getProductById(productId).then(productsFound => {
             if(productsFound.length === 0)
                 redirectToHome();
@@ -41,6 +40,12 @@ function ProductDetails(props)
             setFeaturedImage({ image: productsFound.images[0], altText: productsFound.name })
         });
     },[productId]);
+
+    useEffect(()=> {
+        basketStoreService.subscribe(setBasketState);
+        basketStoreService.init();
+    },[]);
+    
 
     const onAddItemClick = e => {
         e.preventDefault();
