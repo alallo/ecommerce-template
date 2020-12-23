@@ -37,11 +37,17 @@ const basketStoreService = {
         updateBasketTotalAmount();
         saveToLocalStorageAndEmit();
       },
-    increaseQuantity: (id, quantity) =>{
-      updateQuantity(id, quantity);
-    },
-    decreaseQuantity: (id, quantity) =>{
-      updateQuantity(id, quantity);
+    updateQuantity: (id, quantity) =>{
+      state = {
+        ...state,
+        data: state.data.map(item => {
+          if (item.product.id === id)
+            return Object.assign({}, item, { quantity: item.quantity + quantity });
+          return item;
+        })
+      };
+      updateBasketTotalAmount();
+      saveToLocalStorageAndEmit();
     },
     clearBasket: () => {
         state = initialState;
@@ -51,19 +57,6 @@ const basketStoreService = {
 }
 
 export default basketStoreService;
-
-function updateQuantity(id, quantity) {
-  state = {
-    ...state,
-    data: state.data.map(item => {
-      if (item.product.id === id)
-        return Object.assign({}, item, { quantity: item.quantity + quantity });
-      return item;
-    })
-  };
-  updateBasketTotalAmount();
-  saveToLocalStorageAndEmit();
-}
 
 function updateBasketTotalAmount() {
   state.basketTotalAmount = state.data.reduce(function (total, item) {

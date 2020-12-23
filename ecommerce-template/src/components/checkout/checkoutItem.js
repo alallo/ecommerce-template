@@ -15,12 +15,12 @@ function CheckoutItem(props) {
 
     function onIncreaseQuantityButtonClick(itemId, event) {
         event.preventDefault();
-        basketStoreService.increaseQuantity(itemId, 1);
+        basketStoreService.updateQuantity(itemId, 1);
     };
 
     function onDecreaseQuantityButtonClick(itemId, event) {
         event.preventDefault();
-        basketStoreService.decreaseQuantity(itemId, -1);
+        basketStoreService.updateQuantity(itemId, -1);
     };
 
     return (
