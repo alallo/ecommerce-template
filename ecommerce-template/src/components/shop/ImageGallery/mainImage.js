@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 function MainImage(props) {
     const mainImage = props.image;
     return (
@@ -5,6 +7,14 @@ function MainImage(props) {
         <img src={mainImage.image} alt={mainImage.altText}/>
     </div>
     );
+  }
+
+  MainImage.propTypes = 
+  {
+    image: PropTypes.shape({
+        image: PropTypes.string,
+        altText: PropTypes.string
+    })
   }
   
   export default MainImage;

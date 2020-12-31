@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 function ThumbnailImages(props) {
     const imageArray = props.images;
 
@@ -28,5 +30,11 @@ function ThumbnailImages(props) {
     )   
 }
   
+ThumbnailImages.propTypes = 
+{
+    activeThumb: PropTypes.number.isRequired,
+    images: PropTypes.arrayOf(PropTypes.string.isRequired)
+}
+
 export default ThumbnailImages;
   

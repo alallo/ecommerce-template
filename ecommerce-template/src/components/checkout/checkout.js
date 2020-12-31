@@ -100,7 +100,7 @@ function Checkout() {
                                         </div>
                                         <div className="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
                                             {
-                                                formErrors.map((error, index) =>
+                                                formErrors.map((error) =>
                                                     <p>{error}</p>)
                                             }
                                         </div>
@@ -115,8 +115,8 @@ function Checkout() {
                                             <h3 className="text-gray-700 font-medium">Order total ({basketState.basketItemCount})</h3>
                                         </div>
                                         {basketState.data.length > 0 
-                                            ? basketState.data.map((checkoutItem, index) =>
-                                            <CheckoutItem checkoutItem={checkoutItem} key={index}/>)
+                                            ? basketState.data.map((checkoutItem) =>
+                                            <CheckoutItem checkoutItem={checkoutItem} key={checkoutItem.product.id}/>)
                                             : <div>The basket is empty</div>
                                         }
                                         <hr className="my-3"/>
@@ -159,7 +159,7 @@ function Checkout() {
                                 </div>
                             </div>
                         </div>
-                        <div className="w-full mb-8 flex-shrink-0 order-1 lg:w-1/2 lg:mb-0 lg:order-2 border rounded-md">
+                        <div className="w-full mb-8 flex-shrink-0 order-1 lg:w-1/2 lg:mb-0 lg:order-2">
                             <div className="flex items-center justify-between mt-8 mb-10">
                                 <button className="flex items-center px-3 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-500 focus:outline-none focus:bg-blue-500" onClick={onClearBasketButtonClick}>
                                     <span>Clear Basket</span>

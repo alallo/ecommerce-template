@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import PropTypes from "prop-types";
 
 function FeaturedProduct(props) {
 
@@ -26,5 +27,14 @@ function FeaturedProduct(props) {
     );
   }
   
+  FeaturedProduct.propTypes = 
+  {
+    product: (PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        isFeatured: PropTypes.bool.isRequired
+    }))
+  }
+
   export default FeaturedProduct;
   

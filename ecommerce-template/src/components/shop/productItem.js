@@ -1,5 +1,6 @@
 import {Link} from 'react-router-dom';
 import "./productItem.css";
+import PropTypes from "prop-types";
 
 function ProductItem(props) {
     const product = props.product;
@@ -21,6 +22,16 @@ function ProductItem(props) {
         </Link>
     </div>
     );
+  }
+
+  ProductItem.propTypes = 
+  {
+    product: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        image: PropTypes.string.isRequired
+    })
   }
   
   export default ProductItem;

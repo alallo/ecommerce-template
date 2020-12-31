@@ -13,15 +13,13 @@ function ProductList() {
             productService.getProductList().then((response) => {
             if(!response)
             {
-                setDisplayError(true);
-                
+                setDisplayError(true);     
             }
             setProductList(response)
           });
         }
         fetchData();
-
-      },[])
+    },[])
 
     if(displayError)
     {

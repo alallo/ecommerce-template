@@ -4,6 +4,7 @@ import { useAlert } from 'react-alert'
 import MainImage from './ImageGallery/mainImage';
 import ThumbnailImages from './ImageGallery/thumbnailImages';
 import productService from "../../services/productService";
+import PropTypes from "prop-types";
 
 function ProductDetails(props)
 {
@@ -22,7 +23,7 @@ function ProductDetails(props)
     }
     const [selectedProduct, setSelectedProduct] = useState(undefined);
     const [quantity, setQuantity] = useState(1);
-    const [, setBasketState] = useState(basketStoreService.initialState);
+    const [basketState, setBasketState] = useState(basketStoreService.initialState);
  
     const [featuredImage, setFeaturedImage] = useState({});
     
@@ -44,7 +45,7 @@ function ProductDetails(props)
     useEffect(()=> {
         basketStoreService.subscribe(setBasketState);
         basketStoreService.init();
-    },[]);
+    },[basketState.data]);
     
 
     const onAddItemClick = e => {
@@ -123,4 +124,12 @@ function ProductDetails(props)
         return <div>Loading...</div>
   }
   
+  ProductDetails.propTypes = 
+  {
+    location: PropTypes.shape({
+        productId: PropTypes.number.isRequired,
+        pathname: PropTypes.string.isRequired,
+    })
+  }
+
   export default ProductDetails;

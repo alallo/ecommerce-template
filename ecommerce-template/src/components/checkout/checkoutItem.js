@@ -1,12 +1,13 @@
 import basketStoreService from '../../services/basketStoreService'
 import React, {useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
 function CheckoutItem(props) {
 
     const [checkoutItem, setCheckoutItem] = useState(props.checkoutItem);
     useEffect(() => {
         setCheckoutItem(props.checkoutItem)
-    },[props.checkoutItem.quantity])
+    },[props.checkoutItem, props.checkoutItem.quantity])
 
     function onRemoveItemButtonClick(itemId, event) {
         event.preventDefault();
@@ -51,6 +52,20 @@ function CheckoutItem(props) {
     );
   }
   
+
+  CheckoutItem.propTypes = 
+  {
+    checkoutItem: PropTypes.shape({
+        product: PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            name: PropTypes.string.isRequired,
+            price: PropTypes.number.isRequired,
+            image: PropTypes.string.isRequired
+        }),
+        quantity: PropTypes.number.isRequired
+    })
+  }
+
   export default CheckoutItem;
   
 
