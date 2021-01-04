@@ -1,5 +1,6 @@
 
-const serverUrl = process.env.REACT_APP_SERVER_URL_DEV
+const serverUrl = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_SERVER_URL_DEV  : process.env.REACT_APP_SERVER_URL_PROD
+const apiKey = process.env.REACT_APP_SERVER_API_KEY
 const httpService = {
     async postData(url, data){
         const response = await fetch(serverUrl + url, {
@@ -7,7 +8,8 @@ const httpService = {
             cache: 'no-cache',
             credentials: 'same-origin', 
             headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'x-functions-key': apiKey
             },
             redirect: 'follow', 
             referrerPolicy: 'no-referrer', 
@@ -21,7 +23,8 @@ const httpService = {
             cache: 'no-cache',
             credentials: 'same-origin',
             headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'x-functions-key': apiKey
             },
             redirect: 'follow',
             referrerPolicy: 'no-referrer'
