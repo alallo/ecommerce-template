@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import './tailwind.output.css';
 import { transitions, positions, Provider as AlertProvider  } from 'react-alert'
 import AlertMUITemplate from "react-alert-template-mui";
+import { BrowserRouter as Router,} from "react-router-dom";
 
 
 const options = {
@@ -18,7 +19,9 @@ const options = {
 ReactDOM.render(
   <React.StrictMode>
     <AlertProvider template={AlertMUITemplate} {...options}>
-     <App />
+      <Router>
+        <App />
+      </Router>
   </AlertProvider>
   </React.StrictMode>,
   document.getElementById('root')

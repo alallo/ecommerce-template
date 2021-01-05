@@ -28,7 +28,7 @@ const productService = {
     async getProductById(id) {
         var product = state.filter(item => item.id === id)[0];
         if(!product)
-            product = await httpService.getData('/product/' + id)
+            product = await httpService.getData('/products/' + id)
         return product;
     }
 }

@@ -4,23 +4,11 @@ import { useAlert } from 'react-alert'
 import MainImage from './ImageGallery/mainImage';
 import ThumbnailImages from './ImageGallery/thumbnailImages';
 import productService from "../../services/productService";
-import PropTypes from "prop-types";
 
 function ProductDetails(props)
 {
     const alert = useAlert();
-    let productId = props.location.productId
-    if(!productId)
-    {
-        let pathName = props.location.pathname;
-        let pathNameArray = pathName.split('/')
-        let productIdFromPathName = pathNameArray[pathNameArray.length -1];
-        if(isNaN(productIdFromPathName))
-            redirectToHome();
-        else
-            productId = productIdFromPathName;
-
-    }
+    
     const [selectedProduct, setSelectedProduct] = useState(undefined);
     const [quantity, setQuantity] = useState(1);
     const [basketState, setBasketState] = useState(basketStoreService.initialState);
@@ -34,13 +22,14 @@ function ProductDetails(props)
     },[]);
 
     useEffect(()=> {
+        let productId = props.match.params.productId; 
         productService.getProductById(productId).then(productsFound => {
             if(productsFound.length === 0)
                 redirectToHome();
             setSelectedProduct(productsFound);
             setFeaturedImage({ image: productsFound.images[0], altText: productsFound.name })
         });
-    },[productId]);
+    },[props.match.params.productId]);
 
     useEffect(()=> {
         basketStoreService.subscribe(setBasketState);
@@ -70,6 +59,7 @@ function ProductDetails(props)
         setFeaturedImage({ image: selectedProduct.images[index], altText: selectedProduct.name })
         setActive({ active: index })
     }
+
     if(selectedProduct)
     {
         return (
@@ -122,14 +112,6 @@ function ProductDetails(props)
     }
     else
         return <div>Loading...</div>
-  }
-  
-  ProductDetails.propTypes = 
-  {
-    location: PropTypes.shape({
-        productId: PropTypes.number.isRequired,
-        pathname: PropTypes.string.isRequired,
-    })
   }
 
   export default ProductDetails;
