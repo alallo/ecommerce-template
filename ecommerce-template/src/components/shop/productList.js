@@ -8,6 +8,7 @@ import ProductListNav from "./productListNav";
 function ProductList() {
     const [productList, setProductList] = useState([]);
     const [displayError, setDisplayError] = useState(false);
+    
     useEffect(() => {
         async function fetchData() {
             productService.getProductList().then((response) => {
