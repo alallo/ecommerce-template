@@ -29,7 +29,6 @@ stages:
         workingDir: $(workingDirectory)
         command: custom
         customCommand: run-script build
-        
 
 - stage: deploy
   jobs:
@@ -48,7 +47,7 @@ stages:
             
           - task: AzureFileCopy@3
             inputs:
-              sourcePath: $(Pipeline.Workspace)/build
+              sourcePath: $(workingDirectory)/build
               azureSubscription: 'ecrystal-ui-pipeline'
               destination: azureBlob
               storage: $(storageaccountname)
