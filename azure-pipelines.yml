@@ -29,6 +29,13 @@ stages:
         workingDir: $(workingDirectory)
         command: custom
         customCommand: run-script build
+      
+    - task: Npm@1
+      displayName: 'npm test'
+      inputs:
+        workingDir: $(workingDirectory)
+        command: custom
+        customCommand: run-script test
     
     - task: CopyFiles@2
       displayName: 'Copy Files'
@@ -47,7 +54,7 @@ stages:
     displayName: Deploy
     environment: 'development'
     pool:
-      vmImage: 'windows-2019'
+      vmImage: 'vs2017-win2016'
     variables:
       storageaccountname: ecrystalwebsite
     strategy:
