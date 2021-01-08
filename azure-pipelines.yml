@@ -38,20 +38,22 @@ stages:
         CleanTargetFolder: true
 
 - stage: deploy
+  displayName: Deploy stage
+  dependsOn: build
+  condition: succeeded()
+
   jobs:
   - deployment: deploy
+    displayName: Deploy
+    environment: 'development'
     pool:
       vmImage: 'ubuntu-latest'
     variables:
       storageaccountname: ecrystalwebsite
-    environment: 'Deploy to Storage'
     strategy:
       runOnce:
         deploy:
           steps:
-          - download: current
-            artifact: build
-            
           - task: AzureFileCopy@3
             inputs:
               sourcePath: $(Build.ArtifactStagingDirectory)
