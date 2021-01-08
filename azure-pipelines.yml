@@ -34,7 +34,7 @@ stages:
       displayName: 'Copy Files'
       inputs:
         SourceFolder: '$(workingDirectory)/build'
-        TargetFolder: '$(build.artifactstagingdirectory)'
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
         CleanTargetFolder: true
 
 - stage: deploy
