@@ -31,13 +31,6 @@ stages:
         customCommand: run-script build
         
 
-    - task: CopyFiles@2
-      displayName: 'Copy Files'
-      inputs:
-        SourceFolder: '$(workingDirectory)/build'
-        TargetFolder: '$(build.artifactstagingdirectory)'
-        CleanTargetFolder: true
-
 - stage: deploy
   jobs:
   - deployment: deploy
