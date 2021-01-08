@@ -1,0 +1,58 @@
+trigger:
+- master
+stages:
+- stage: build
+  jobs:
+  - job: build
+    pool:
+      vmImage: 'ubuntu-latest'
+
+    steps:
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '12.x'
+      displayName: 'Install Node.js'
+
+    - task: Npm@1
+      displayName: 'npm install'
+      inputs:
+        workingDir: 'ecrystal-app'
+        command: install
+
+    - task: Npm@1
+      displayName: 'npm build'
+      inputs:
+        workingDir: 'ecrystal-app'
+        command: custom
+        customCommand: run-script build
+        
+
+    - task: CopyFiles@2
+      displayName: 'Copy Files'
+      inputs:
+        SourceFolder: 'ecrystal-app\build'
+        TargetFolder: '$(build.artifactstagingdirectory)'
+        CleanTargetFolder: true
+
+- stage: deploy
+  jobs:
+  - deployment: deploy
+    pool:
+      vmImage: 'ubuntu-latest'
+    variables:
+      storageaccountname: ecrystalwebsite
+    environment: 'Deploy to Storage'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - download: current
+            artifact: build
+            
+          - task: AzureFileCopy@3
+            inputs:
+              sourcePath: $(Pipeline.Workspace)/build
+              azureSubscription: 'AzureRM'
+              destination: azureBlob
+              storage: $(storageaccountname)
+              containerName: "$web"
