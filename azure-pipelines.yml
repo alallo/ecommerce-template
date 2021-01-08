@@ -29,13 +29,6 @@ stages:
         workingDir: $(workingDirectory)
         command: custom
         customCommand: run-script build
-      
-    - task: Npm@1
-      displayName: 'npm test'
-      inputs:
-        workingDir: $(workingDirectory)
-        command: custom
-        customCommand: run-script test
     
     - task: CopyFiles@2
       displayName: 'Copy Files'
