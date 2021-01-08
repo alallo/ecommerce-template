@@ -1,5 +1,9 @@
 trigger:
 - master
+variables:
+  # Working Directory
+  workingDirectory: '$(System.DefaultWorkingDirectory)/ecommerce-template'
+
 stages:
 - stage: build
   jobs:
@@ -16,13 +20,13 @@ stages:
     - task: Npm@1
       displayName: 'npm install'
       inputs:
-        workingDir: 'ecrystal-app'
+        workingDir: $(workingDirectory)
         command: install
 
     - task: Npm@1
       displayName: 'npm build'
       inputs:
-        workingDir: 'ecrystal-app'
+        workingDir: $(workingDirectory)
         command: custom
         customCommand: run-script build
         
@@ -30,7 +34,7 @@ stages:
     - task: CopyFiles@2
       displayName: 'Copy Files'
       inputs:
-        SourceFolder: 'ecrystal-app\build'
+        SourceFolder: '$(workingDirectory)\build'
         TargetFolder: '$(build.artifactstagingdirectory)'
         CleanTargetFolder: true
 
