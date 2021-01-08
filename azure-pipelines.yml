@@ -36,28 +36,30 @@ stages:
         SourceFolder: '$(workingDirectory)/build'
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
         CleanTargetFolder: true
+    - task: PublishBuildArtifacts@1
+      inputs:
+        pathToPublish: $(Build.ArtifactStagingDirectory)
+        artifactName: BuildOutputs
 
 - stage: deploy
-  displayName: Deploy stage
-  dependsOn: build
-  condition: succeeded()
-
   jobs:
   - deployment: deploy
-    displayName: Deploy
-    environment: 'development'
     pool:
       vmImage: vs2017-win2016
     variables:
       storageaccountname: ecrystalwebsite
+    environment: 'Deploy to Storage'
     strategy:
       runOnce:
         deploy:
           steps:
+          - download: current
+            artifact: BuildOutputs
+
           - task: AzureFileCopy@3
             inputs:
               sourcePath: $(Build.ArtifactStagingDirectory)
               azureSubscription: 'ecrystal-ui-pipeline'
               destination: azureBlob
               storage: $(storageaccountname)
-              containerName: "$web"
+              containerName: "$web" 
