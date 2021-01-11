@@ -58,7 +58,7 @@ stages:
 
           - task: AzureFileCopy@3
             inputs:
-              sourcePath: $(Build.ArtifactStagingDirectory)
+              sourcePath: $(System.DefaultWorkingDirectory)
               azureSubscription: 'ecrystal-ui-pipeline'
               destination: azureBlob
               storage: $(storageaccountname)
