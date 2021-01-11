@@ -3,16 +3,16 @@ trigger:
 variables:
   # Working Directory
   workingDirectory: '$(System.DefaultWorkingDirectory)/ecommerce-template'
-  group: ecrystal-dev
 
 
 stages:
 - stage: build
   jobs:
   - job: build
+    variables:
+      group: ecrystal-dev
     pool:
       vmImage: 'ubuntu-latest'
-
     steps:
     - task: NodeTool@0
       inputs:
