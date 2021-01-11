@@ -3,6 +3,8 @@ trigger:
 variables:
   # Working Directory
   workingDirectory: '$(System.DefaultWorkingDirectory)/ecommerce-template'
+  group: ecrystal-dev
+
 
 stages:
 - stage: build
@@ -29,6 +31,9 @@ stages:
         workingDir: $(workingDirectory)
         command: custom
         customCommand: run-script build
+      env:
+        REACT_APP_SERVER_URL_PROD: $API_URL
+        REACT_APP_SERVER_API_KEY: $API_KEY
     
     - task: CopyFiles@2
       displayName: 'Copy Files'
