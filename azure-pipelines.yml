@@ -10,7 +10,7 @@ stages:
   jobs:
   - job: build
     variables:
-      group: ecrystal_dev
+     - group: ecrystal_dev
     pool:
       vmImage: 'ubuntu-latest'
     steps:
