@@ -4,14 +4,21 @@ variables:
   # Working Directory
   workingDirectory: '$(System.DefaultWorkingDirectory)/ecommerce-template'
 
+
 stages:
 - stage: build
   jobs:
   - job: build
+    variables:
+     - group: ecrystal_dev
     pool:
       vmImage: 'ubuntu-latest'
-
     steps:
+    - script: |
+        echo $API_URL
+        echo $API_KEY
+      displayName: 'variable groups'
+
     - task: NodeTool@0
       inputs:
         versionSpec: '12.x'
@@ -29,6 +36,9 @@ stages:
         workingDir: $(workingDirectory)
         command: custom
         customCommand: run-script build
+      env:
+        REACT_APP_SERVER_URL_PROD: $(API_URL)
+        REACT_APP_SERVER_API_KEY: $(API_KEY)
     
     - task: CopyFiles@2
       displayName: 'Copy Files'
