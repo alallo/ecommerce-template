@@ -5,7 +5,7 @@ import { act } from "react-dom/test-utils";
 import { BrowserRouter as Router,} from "react-router-dom";
 
 const checkoutItem = {
-    quantity: 1,
+    quantity: 3,
     product:
     {
         id: 123,
@@ -16,10 +16,12 @@ const checkoutItem = {
 }
 
 test('renders checkout item values', () => {
+    const increaseClick = jest.fn()
+    const decreaseClick = jest.fn()
+    const onRemoveItemClick = jest.fn()
     act(() => {
-        render(<Router><CheckoutItem checkoutItem={checkoutItem}/></Router>);
+        render(<Router><CheckoutItem checkoutItem={checkoutItem} onIncreaseQuantity={increaseClick} onDecreaseQuantity={decreaseClick} onRemoveItem={onRemoveItemClick}/></Router>);
       });
-    screen.debug();
     expect(screen.getByText(checkoutItem.product.name)).toBeInTheDocument();
     expect(screen.getByText("£" + checkoutItem.product.price, { selector: 'b' })).toBeInTheDocument();
     expect(screen.getByText(checkoutItem.quantity.toString())).toBeInTheDocument();
@@ -29,38 +31,23 @@ test('renders checkout item values', () => {
 });
 
 
-test('on plus click increase quantity function called', () => {
+test('on click increase/decrease/remote iteem the right function is called', () => {
     const increaseClick = jest.fn()
+    const decreaseClick = jest.fn()
+    const onRemoveItemClick = jest.fn()
     act(() => {
-        render(<Router><CheckoutItem checkoutItem={checkoutItem} onIncreaseQuantity={increaseClick}/></Router>);
+        render(<Router><CheckoutItem checkoutItem={checkoutItem} onIncreaseQuantity={increaseClick} onDecreaseQuantity={decreaseClick} onRemoveItem={onRemoveItemClick}/></Router>);
       });
 
     fireEvent.click(screen.getByTestId('increaseQty'));
     expect(increaseClick).toHaveBeenCalledTimes(1)
     expect(increaseClick.mock.calls[0][0]).toBe(123); //first call, first parameter
 
-});
-
-test('on minus click decrease quantity function called', () => {
-    const decreaseClick = jest.fn()
-    act(() => {
-        render(<Router><CheckoutItem checkoutItem={checkoutItem} onDecreaseQuantity={decreaseClick}/></Router>);
-      });
-
     fireEvent.click(screen.getByTestId('decreaseQty'));
     expect(decreaseClick).toHaveBeenCalledTimes(1)
     expect(decreaseClick.mock.calls[0][0]).toBe(123); //first call, first parameter
 
-});
-
-test('on remove button click removeItem function called', () => {
-    const onRemoveItemClick = jest.fn()
-    act(() => {
-        render(<Router><CheckoutItem checkoutItem={checkoutItem} onRemoveItem={onRemoveItemClick}/></Router>);
-      });
-
     fireEvent.click(screen.getByTestId('removeItem'));
     expect(onRemoveItemClick).toHaveBeenCalledTimes(1)
     expect(onRemoveItemClick.mock.calls[0][0]).toBe(123); //first call, first parameter
-
 });

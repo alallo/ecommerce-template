@@ -56,7 +56,7 @@ function Checkout() {
     }
 
     return (  
-        <div className="container mx-auto px-6 border rounded-md">
+        <div className="container mx-auto px-6">
             <div className="flex flex-col lg:flex-row mt-8">
                 <div className="w-full lg:w-full order-2">
                     <div className="w-full mb-8 flex-shrink-0 order-1 lg:w-1/2 lg:mb-0 lg:order-2 border rounded-md">
