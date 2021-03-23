@@ -9,4 +9,9 @@ resource "azurerm_storage_account" "ecommerce_storage" {
   location                 = azurerm_resource_group.ecommerce_rg.location
   account_tier             = var.storage_tier
   account_replication_type = var.storage_replication_type
+  account_kind             = "StorageV2"
+  enable_https_traffic_only = true
+  static_website {
+    index_document = "index.html"
+  }
 }
