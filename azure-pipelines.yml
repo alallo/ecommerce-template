@@ -17,8 +17,6 @@ stages:
 - stage: build
   jobs:
   - job: build
-    variables:
-     - group: ecommerce_ui_dev
     pool:
       vmImage: $(vmImageName)
     steps:
