@@ -25,6 +25,8 @@ parameters:
   - name: workingDir
     type: string
     default: './deploy'
+  - name: artifactName
+    type: string
 
 jobs:
 - job: deploy
