@@ -76,5 +76,5 @@ jobs:
       sourcePath: $(Pipeline.Workspace)/BuildOutputs
       azureSubscription: $(serviceConnectionName)
       destination: azureBlob
-      storage: sa-ecommui-${{ parameters.environment }}-${{ parameters.location_short }}-0
+      storage: saecommui${{ parameters.environment }}${{ parameters.location_short }}01
       containerName: "$web"

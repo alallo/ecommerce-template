@@ -1,4 +1,6 @@
 location = "#{location}#"
+
+location_short = "#{location_short}#"
  
 environment = "#{environment}#"
 
