@@ -1,18 +1,25 @@
 trigger:
 - master
-variables:
-  # Working Directory
-  workingDirectory: '$(System.DefaultWorkingDirectory)/ecommerce-template'
 
+variables:
+ - group: "dev-ecommerce-ui"
+ - name: vmImageName
+   value: 'ubuntu-latest'
+ - name: vmImageNameWin
+   value: 'vs2017-win2016'
+ - name: workingDirectory
+   value: '$(System.DefaultWorkingDirectory)/ecommerce-template'
+ - name : buildConfiguration
+   value: 'Release'
 
 stages:
 - stage: build
   jobs:
   - job: build
     variables:
-     - group: ecrystal_dev
+     - group: ecommerce_ui_dev
     pool:
-      vmImage: 'ubuntu-latest'
+      vmImage: $(vmImageName)
     steps:
     - script: |
         echo $API_URL
@@ -51,25 +58,18 @@ stages:
         pathToPublish: $(Build.ArtifactStagingDirectory)
         artifactName: BuildOutputs
 
-- stage: deploy
+- stage: Dev
+  displayName: Deploy stage
+  dependsOn: Build
   jobs:
-  - deployment: deploy
-    pool:
-      vmImage: vs2017-win2016
-    variables:
-      storageaccountname: ecrystalwebsite
-    environment: 'Deploy to Storage'
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - download: current
-            artifact: BuildOutputs
-
-          - task: AzureFileCopy@3
-            inputs:
-              sourcePath: $(Pipeline.Workspace)/BuildOutputs
-              azureSubscription: 'ecrystal-ui-pipeline'
-              destination: azureBlob
-              storage: $(storageaccountname)
-              containerName: "$web" 
+    - template: Deploy/terraform-pipelines.yml
+      parameters:
+          environment: $(environment)
+          location_short: $(location_short)
+          vmImageName: $(vmImageNameWin)
+          resourceGroupName: '$(resourceGroupName)'
+          storageAccountName: '$(storageAccountName)'
+          containerName: '$(containerName)'
+          workingDir: 'Deploy/terraform'
+          tfstateKey: '$(tfstateKey)'
+          artifactName: BuildOutputs
