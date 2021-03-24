@@ -5,6 +5,7 @@ const httpService = {
     async postData(url, data){
         const response = await fetch(serverUrl + url, {
             method: 'POST',
+            mode: 'cors',
             cache: 'no-cache',
             headers: {
             'Content-Type': 'application/json',
@@ -19,6 +20,7 @@ const httpService = {
     async getData(url) {
         const response = await fetch(serverUrl + url, {
             method: 'GET',
+            mode: 'cors',
             cache: 'no-cache',
             headers: {
             'Content-Type': 'application/json',
