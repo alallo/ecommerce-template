@@ -1,9 +1,10 @@
 
 const serverUrl = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_SERVER_URL_DEV  : process.env.REACT_APP_SERVER_URL_PROD
+const protocol = "https://"
 const apiKey = process.env.REACT_APP_SERVER_API_KEY
 const httpService = {
     async postData(url, data){
-        const response = await fetch(serverUrl + url, {
+        const response = await fetch(protocol+ serverUrl + url, {
             method: 'POST',
             mode: 'cors',
             cache: 'no-cache',
@@ -18,7 +19,7 @@ const httpService = {
         await returnResponse(response);
     },
     async getData(url) {
-        const response = await fetch(serverUrl + url, {
+        const response = await fetch(protocol + serverUrl + url, {
             method: 'GET',
             mode: 'cors',
             cache: 'no-cache',
