@@ -2,7 +2,7 @@ trigger:
 - master
 
 variables:
- - group: "dev-ecommerce-ui"
+ - group: "dev-ecommerce-outputs"
  - group: "dev-ecommerce-shared"
  - name: vmImageName
    value: 'ubuntu-latest'
@@ -39,8 +39,8 @@ stages:
         command: custom
         customCommand: run-script build
       env:
-        REACT_APP_SERVER_URL_PROD: $(API_URL)
-        REACT_APP_SERVER_API_KEY: $(API_KEY)
+        REACT_APP_SERVER_URL_PROD: $(function_hostname)
+        REACT_APP_SERVER_API_KEY: $(function_master_key)
     
     - task: CopyFiles@2
       displayName: 'Copy Files'
