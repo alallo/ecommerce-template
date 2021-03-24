@@ -1,6 +1,6 @@
 
 const serverUrl = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_SERVER_URL_DEV  : process.env.REACT_APP_SERVER_URL_PROD
-const protocol = "https://"
+const protocol = process.env.NODE_ENV !== 'development' ? "https://" : "http://"
 const apiKey = process.env.REACT_APP_SERVER_API_KEY
 const httpService = {
     async postData(url, data){
