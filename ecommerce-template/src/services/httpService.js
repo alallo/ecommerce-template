@@ -6,7 +6,6 @@ const httpService = {
         const response = await fetch(serverUrl + url, {
             method: 'POST',
             cache: 'no-cache',
-            credentials: 'same-origin', 
             headers: {
             'Content-Type': 'application/json',
             'x-functions-key': apiKey
@@ -21,7 +20,6 @@ const httpService = {
         const response = await fetch(serverUrl + url, {
             method: 'GET',
             cache: 'no-cache',
-            credentials: 'same-origin',
             headers: {
             'Content-Type': 'application/json',
             'x-functions-key': apiKey
