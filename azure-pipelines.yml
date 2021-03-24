@@ -3,6 +3,7 @@ trigger:
 
 variables:
  - group: "dev-ecommerce-outputs"
+ - group: "dev-ecommerce-ui"
  - group: "dev-ecommerce-shared"
  - name: vmImageName
    value: 'ubuntu-latest'
