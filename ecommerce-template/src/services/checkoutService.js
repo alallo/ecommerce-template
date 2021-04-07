@@ -9,7 +9,8 @@ const checkoutService = {
         }
         catch(error)
         {
-            console.error("Can't get the list of products: " + error);
+            console.error("Can't complete the order: " + error);
+            return null;
         }
         finally
         {

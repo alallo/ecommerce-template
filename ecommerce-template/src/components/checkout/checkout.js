@@ -48,10 +48,17 @@ function Checkout() {
         if(isFormValid)
         {
             let order = { basket: basketState.data, customer: customerDetails};
-            checkoutService.completeCheckout(order);
-            basketStoreService.clearBasket();
-            alert.success("Your order is now with us. We will get in touch soon. Thank you!");
-            return history.push('/');
+            let response = checkoutService.completeCheckout(order);
+            if(!response)
+            {
+                alert.error("Something went wrong when completing the order. Please try again.");
+            }
+            else
+            {
+                basketStoreService.clearBasket();
+                alert.success("Your order is now with us. We will get in touch soon. Thank you!");
+                return history.push('/');
+            }
         }
     }
 
