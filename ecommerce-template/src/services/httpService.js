@@ -19,7 +19,7 @@ const httpService = {
         await returnResponse(response);
     },
     async getData(url) {
-        const response = await fetch(protocol + serverUrl + url, {
+        const response = await fetch(protocol + serverUrl + "api"+ url, {
             method: 'GET',
             mode: 'cors',
             cache: 'no-cache',
